@@ -1,7 +1,7 @@
 <template>
   <div class="v-main-wrapper">
     <VCart :products="addedProductsInCart" />
-    <VCatalog @sendAddedProduct="pushAddedProductInCart" />
+    <VCatalog @product="pushAddedProductInCart" />
   </div>
 </template>
 

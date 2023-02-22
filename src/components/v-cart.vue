@@ -1,10 +1,13 @@
 <template>
   <div class="v-cart">
-    <VCartItem
-      v-for="product in products"
-      :key="product.article"
-      :product_data="product"
-    />
+    <h2>Корзина</h2>
+    <div class="v-cart__main-content-wrapper">
+      <VCartItem
+        v-for="product in products"
+        :key="product.article"
+        :product_data="product"
+      />
+    </div>
   </div>
 </template>
 
@@ -28,9 +31,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .v-cart {
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  &__main-content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 </style>
