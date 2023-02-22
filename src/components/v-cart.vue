@@ -1,13 +1,14 @@
 <template>
   <div class="v-cart">
     <h2>Корзина</h2>
-    <div class="v-cart__main-content-wrapper">
+    <div v-if="productsLength" class="v-cart__main-content-wrapper">
       <VCartItem
         v-for="product in products"
         :key="product.article"
         :product_data="product"
       />
     </div>
+    <div v-else>Корзина пуста</div>
   </div>
 </template>
 
@@ -27,6 +28,11 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    productsLength() {
+      return this.products.length;
+    },
   },
 };
 </script>
