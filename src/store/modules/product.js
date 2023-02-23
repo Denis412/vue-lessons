@@ -1,6 +1,6 @@
 export default {
   actions: {
-    async fetchProducts({ commit }) {
+    fetchProducts({ commit }) {
       fetch("http://localhost:3000/products")
         .then((response) => response.json())
         .then((products) => commit("updateProducts", products))
