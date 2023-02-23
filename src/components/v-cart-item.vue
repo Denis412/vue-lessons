@@ -15,11 +15,19 @@
     <div class="v-cart-item__footer">
       <p>Price {{ product_data.price }}</p>
       <button class="v-cart-item__btn">Pay</button>
+      <button
+        class="v-cart-item__btn v-cart-item__btn-delete"
+        @click="deleteProductInCart(product_data)"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "v-cart-item",
   props: {
@@ -30,6 +38,7 @@ export default {
       },
     },
   },
+  methods: mapMutations(["deleteProductInCart"]),
 };
 </script>
 
@@ -54,6 +63,10 @@ export default {
     border-radius: 6px;
     background: #1d1df5;
     cursor: pointer;
+
+    &-delete {
+      background: red;
+    }
   }
 }
 </style>

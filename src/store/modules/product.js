@@ -11,6 +11,12 @@ export default {
     addProductInCart(state, newProduct) {
       state.productsInCart.push(newProduct);
     },
+    deleteProductInCart(state, deleteProduct) {
+      const index = state.productsInCart.findIndex(
+        (product) => deleteProduct.id === product.id
+      );
+      if (index !== -1) state.productsInCart.splice(index, 1);
+    },
     updateProducts(state, products) {
       state.allProducts = products;
     },
