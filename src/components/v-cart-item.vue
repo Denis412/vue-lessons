@@ -22,7 +22,6 @@
 <script>
 export default {
   name: "v-cart-item",
-  components: {},
   props: {
     product_data: {
       type: Object,
@@ -30,9 +29,6 @@ export default {
         return {};
       },
     },
-  },
-  data() {
-    return {};
   },
 };
 </script>

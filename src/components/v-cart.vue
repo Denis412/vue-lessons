@@ -1,9 +1,9 @@
 <template>
   <div class="v-cart">
     <h2>Корзина</h2>
-    <div v-if="productsLength" class="v-cart__main-content-wrapper">
+    <div v-if="productsInCartCount" class="v-cart__main-content-wrapper">
       <VCartItem
-        v-for="product in products"
+        v-for="product in addedInCartProducts"
         :key="product.article"
         :product_data="product"
       />
@@ -14,26 +14,12 @@
 
 <script>
 import VCartItem from "@/components/v-cart-item.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "v-cart",
   components: { VCartItem },
-  props: {
-    products: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
-  },
-  data() {
-    return {};
-  },
-  computed: {
-    productsLength() {
-      return this.products.length;
-    },
-  },
+  computed: mapGetters(["productsInCartCount", "addedInCartProducts"]),
 };
 </script>
 
@@ -46,7 +32,7 @@ export default {
   &__main-content-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
   }
 }
 </style>

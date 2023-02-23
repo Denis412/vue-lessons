@@ -1,7 +1,7 @@
 <template>
   <div class="v-main-wrapper">
-    <VCart :products="addedProductsInCart" />
-    <VCatalog @product="pushAddedProductInCart" />
+    <VCart />
+    <VCatalog />
   </div>
 </template>
 
@@ -15,13 +15,7 @@ export default {
   data() {
     return {
       title: "My store",
-      addedProductsInCart: [],
     };
-  },
-  methods: {
-    pushAddedProductInCart(product) {
-      this.addedProductsInCart.push(product);
-    },
   },
 };
 </script>

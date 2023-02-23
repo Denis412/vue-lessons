@@ -14,7 +14,10 @@
     </div>
     <div class="v-catalog-item__footer">
       <p class="v-catalog-item__price">Price: {{ product_data.price }}</p>
-      <button class="v-catalog-item__add-to-cart_btn" @click="sendDataToParent">
+      <button
+        class="v-catalog-item__add-to-cart_btn"
+        @click="addProductInCart(product_data)"
+      >
         Add to cart
       </button>
     </div>
@@ -22,6 +25,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "v-catalog-item",
   props: {
@@ -32,14 +37,7 @@ export default {
       },
     },
   },
-  data() {
-    return {};
-  },
-  methods: {
-    sendDataToParent() {
-      this.$emit("sendDataToParent", this.product_data);
-    },
-  },
+  methods: mapMutations(["addProductInCart"]),
 };
 </script>
 
