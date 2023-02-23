@@ -1,10 +1,10 @@
 export default {
   actions: {
     async fetchProducts({ commit }) {
-      const response = await fetch("http://localhost:3000/products");
-      const products = await response.json();
-
-      commit("updateProducts", products);
+      fetch("http://localhost:3000/products")
+        .then((response) => response.json())
+        .then((products) => commit("updateProducts", products))
+        .catch((error) => console.log(error));
     },
   },
   mutations: {
