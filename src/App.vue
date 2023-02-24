@@ -53,6 +53,10 @@ body {
   }
 }
 
+.white-color-text {
+  color: white;
+}
+
 .black-container {
   box-shadow: 0 0 8px 0 orangered;
   border-radius: 1rem;

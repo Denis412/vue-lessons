@@ -3,14 +3,14 @@
     <VHeader>
       <h3 class="colored-text">Мой магазин</h3>
       <router-link :to="{ name: 'cart' }">
-        <div class="v-catalog__link-to-cart">
+        <div class="v-catalog-link">
           <i class="medium material-icons">shopping_cart</i>
           {{ allProductsInCartCount }}
         </div>
       </router-link>
     </VHeader>
 
-    <main class="v-catalog__content-wrapper">
+    <main class="v-catalog-main-wrapper">
       <h2>Каталог товаров</h2>
       <div
         class="v-catalog-wrapper-items flex-container-justify-between flex-container flex-container-align-c"
@@ -62,11 +62,11 @@ export default {
 }
 
 .v-catalog {
-  &__content-wrapper {
+  &-main-wrapper {
     margin: 0 2rem;
   }
 
-  &__link-to-cart {
+  &-link {
     color: white;
     padding: 1rem;
   }

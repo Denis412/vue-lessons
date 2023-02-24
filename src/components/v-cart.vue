@@ -2,7 +2,7 @@
   <div class="v-cart flex-container flex-container-column">
     <VHeader>
       <router-link :to="{ name: 'catalog' }">
-        <div class="v-cart__link flex-container flex-container-align-c">
+        <div class="white-color-text flex-container flex-container-align-c">
           <i class="small material-icons">arrow_back</i>
           <p>Вернуться к покупкам</p>
         </div>
@@ -36,10 +36,6 @@ export default {
 <style lang="scss">
 .v-cart {
   width: 100%;
-
-  &__link {
-    color: white;
-  }
 
   &__content-wrapper {
     padding: 0 2rem;

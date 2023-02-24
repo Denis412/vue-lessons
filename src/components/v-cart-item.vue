@@ -13,19 +13,17 @@
       <div
         class="v-cart-item__btns-wrapper flex-container flex-container-column flex-container-align-c"
       >
-        <div
-          class="v-cart-item__counters-btns flex-container flex-container-align-c"
-        >
+        <div class="flex-container flex-container-align-c">
           <button
-            class="button-active"
+            class="button-active v-cart-item-btn"
             :disabled="countSpecificProduct === 1"
             @click="deleteProductInCart(product_group[0])"
           >
             -
           </button>
-          <p>{{ countSpecificProduct }}</p>
+          <p class="v-cart-item-paragraph">{{ countSpecificProduct }}</p>
           <button
-            class="button-active"
+            class="button-active v-cart-item-btn"
             @click="pushProductInTheCart(product_group[0])"
           >
             +
@@ -81,15 +79,13 @@ export default {
     margin-right: 2rem;
   }
 
-  &__counters-btns {
-    & p {
-      margin: 0 1rem;
-    }
+  &-paragraph {
+    margin: 0 1rem;
+  }
 
-    & button {
-      width: 2rem;
-      height: 2rem;
-    }
+  &-btn {
+    width: 2rem;
+    height: 2rem;
   }
 
   &__main-text {
