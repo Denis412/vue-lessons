@@ -26,10 +26,12 @@ export default {
 .v-main-wrapper__content {
   display: flex;
   flex-direction: column;
-  //justify-content: center;
+  color: white;
   min-height: 100vh;
   align-items: center;
-  background: #e3e2e2;
+  background: #282626;
   box-shadow: 0 0 10px gray;
+
+  //#e3e2e2
 }
 </style>

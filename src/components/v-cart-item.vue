@@ -10,7 +10,12 @@
     <div class="v-cart-item__right-wrapper">
       <div class="v-cart-item__btns-wrapper">
         <div class="v-cart-item__counters-btns">
-          <button @click="deleteProductInCart(product_group[0])">-</button>
+          <button
+            :disabled="countSpecificProduct === 1"
+            @click="deleteProductInCart(product_group[0])"
+          >
+            -
+          </button>
           <p>{{ countSpecificProduct }}</p>
           <button @click="pushProductInTheCart(product_group[0])">+</button>
         </div>
@@ -62,10 +67,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  background: #ffffff;
+  background: #131313;
   border-radius: 2rem;
 
-  box-shadow: 0 0 8px lightblue;
+  box-shadow: 0 0 8px orangered;
 
   &-clickable-text {
     color: #57579a;
@@ -102,9 +107,9 @@ export default {
       width: 2rem;
       height: 2rem;
 
-      border: 1px solid #dfdee2;
+      border: none;
       border-radius: 4px;
-      background: #ffffff;
+      background: orangered;
 
       cursor: pointer;
     }

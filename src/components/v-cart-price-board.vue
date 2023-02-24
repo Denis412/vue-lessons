@@ -31,8 +31,9 @@ export default {
   height: max-content;
   flex-grow: 2;
   padding: 2rem;
-  background: #ffffff;
+  background: #131313;
   border-radius: 1rem;
+  box-shadow: 0 0 8px 0 orangered;
 }
 
 .v-cart-price-board-content {
@@ -54,17 +55,17 @@ export default {
   border-radius: 1rem;
   cursor: pointer;
   color: white;
-  background: #1d1df5;
+  background: orangered;
 
   transition: 0.2s;
 
   &:focus {
-    background: #1d1df5;
+    background: orangered;
   }
 
   &:active {
     transform: scale(0.95);
-    background: #6161f8;
+    background: #fc5a1d;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="v-catalog">
     <header class="header">
-      <h3>Мой магазин</h3>
+      <h3 class="colored-text">Мой магазин</h3>
       <router-link :to="{ name: 'cart' }">
         <div class="v-catalog__link-to-cart">
           <i class="medium material-icons">shopping_cart</i>
@@ -9,6 +9,7 @@
         </div>
       </router-link>
     </header>
+
     <main class="v-catalog__content-wrapper">
       <h2>Каталог товаров</h2>
       <div class="v-catalog-wrapper-items">
@@ -48,12 +49,16 @@ export default {
   justify-content: space-between;
   min-height: 5rem;
   padding: 0 2rem;
-  background: #ffffff;
+  background: #171717;
 
   & p {
     font-size: 1rem;
     margin-left: 1rem;
   }
+}
+
+.colored-text {
+  color: orangered;
 }
 
 .v-catalog {
@@ -65,7 +70,7 @@ export default {
   }
 
   &__link-to-cart {
-    color: black;
+    color: white;
     padding: 1rem;
   }
 

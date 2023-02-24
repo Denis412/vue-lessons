@@ -47,9 +47,9 @@ export default {
   min-width: 30rem;
   padding: 20px;
   margin: 20px;
-  box-shadow: 0 0 8px 0 gray;
+  box-shadow: 0 0 8px 0 orangered;
   border-radius: 6px;
-  background: #ffffff;
+  background: #131313;
 
   &__header {
     display: flex;
@@ -81,18 +81,21 @@ export default {
   &__add-to-cart_btn {
     color: white;
     padding: 0.5rem 1rem;
-    border: 1px solid white;
+    border: none;
     border-radius: 6px;
-    background: #1d1df5;
+    background: orangered;
     cursor: pointer;
     transition: 0.2s;
 
+    //#1d1df5
+
     &:focus {
-      background: #1d1df5;
+      background: orangered;
     }
 
     &:active {
       transform: scale(0.95);
+      background: #fc5a1d;
     }
   }
 }

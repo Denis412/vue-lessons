@@ -45,7 +45,7 @@ export default {
   &__link {
     display: flex;
     align-items: center;
-    color: black;
+    color: white;
   }
 
   &__content-wrapper {
