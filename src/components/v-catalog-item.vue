@@ -44,7 +44,7 @@ export default {
 <style lang="scss">
 .v-catalog-item {
   flex-basis: 25%;
-  min-width: 22.5rem;
+  min-width: 30rem;
   padding: 20px;
   margin: 20px;
   box-shadow: 0 0 8px 0 gray;
@@ -52,7 +52,6 @@ export default {
   background: #ffffff;
 
   &__header {
-    display: flex;
     align-items: center;
 
     & img {

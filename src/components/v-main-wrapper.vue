@@ -1,17 +1,14 @@
 <template>
   <div class="v-main-wrapper">
-    <VCart />
-    <VCatalog />
+    <keep-alive>
+      <router-view> </router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import VCatalog from "@/components/v-catalog.vue";
-import VCart from "@/components/v-cart.vue";
-
 export default {
   name: "v-main-wrapper",
-  components: { VCart, VCatalog },
   data() {
     return {
       title: "My store",
@@ -26,7 +23,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 </style>

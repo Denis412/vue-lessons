@@ -1,5 +1,13 @@
 <template>
   <div class="v-cart">
+    <router-link :to="{ name: 'catalog' }">
+      <div class="v-catalog__link-to-cart">
+        <i class="medium material-icons">shopping_cart</i>
+        {{ productsInCartCount }}
+      </div>
+      <button class="btn">Back to catalog</button>
+    </router-link>
+
     <h2>Корзина</h2>
     <div v-if="productsInCartCount" class="v-cart__main-content-wrapper">
       <VCartItem

@@ -9,12 +9,16 @@ export default {
   },
   mutations: {
     addProductInCart(state, newProduct) {
-      state.productsInCart.push(newProduct);
+      state.productsInCart.push(
+        // Добавление поля id для карточек товаров, добавленных в корзину
+        Object.assign({}, newProduct, { id: state.productsInCart.length + 1 })
+      );
     },
     deleteProductInCart(state, deleteProduct) {
       const index = state.productsInCart.findIndex(
         (product) => deleteProduct.id === product.id
       );
+      // console.log(deleteProduct === state.allProducts[index]);
       if (index !== -1) state.productsInCart.splice(index, 1);
     },
     updateProducts(state, products) {

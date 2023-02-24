@@ -1,6 +1,12 @@
 <template>
-  <!--  <h1>Hello Im Catalog!</h1>-->
   <div class="v-catalog">
+    <router-link :to="{ name: 'cart', params: { addedInCartProducts } }">
+      <div class="v-catalog__link-to-cart">
+        <i class="medium material-icons">shopping_cart</i>
+        {{ productsInCartCount }}
+      </div>
+    </router-link>
+
     <h2>Каталог товаров</h2>
     <div class="v-catalog-wrapper-items">
       <VCatalogItem
@@ -22,7 +28,11 @@ export default {
   mounted() {
     this.fetchProducts();
   },
-  computed: mapGetters(["allProducts"]),
+  computed: mapGetters([
+    "allProducts",
+    "productsInCartCount",
+    "addedInCartProducts",
+  ]),
   methods: mapActions(["fetchProducts"]),
 };
 </script>
@@ -31,6 +41,13 @@ export default {
 .v-catalog {
   display: flex;
   flex-direction: column;
+
+  &__link-to-cart {
+    position: absolute;
+    top: 10px;
+    right: 1rem;
+    padding: 1rem;
+  }
 
   &-wrapper-items {
     display: flex;

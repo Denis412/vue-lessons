@@ -16,6 +16,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~materialize-css/dist/css/materialize.min.css";
+
 * {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   box-sizing: border-box;
