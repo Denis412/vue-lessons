@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import VCart from "@/components/v-cart.vue";
+import { defineAsyncComponent } from "vue";
+const VCart = defineAsyncComponent(() => import("@/components/v-cart.vue"));
 import VCatalog from "@/components/v-catalog.vue";
 
 const routes = [

@@ -1,9 +1,18 @@
 <template>
   <div class="v-main-wrapper">
-    <main class="v-main-wrapper__content">
-      <keep-alive>
-        <router-view> </router-view>
-      </keep-alive>
+    <main
+      class="v-main-wrapper__content flex-container flex-container-align-c flex-container-column"
+    >
+      <Suspense>
+        <template #default>
+          <keep-alive>
+            <router-view> </router-view>
+          </keep-alive>
+        </template>
+        <template #fallback>
+          <h1>Loading...</h1>
+        </template>
+      </Suspense>
     </main>
   </div>
 </template>
@@ -24,14 +33,9 @@ export default {
 
 <style lang="scss">
 .v-main-wrapper__content {
-  display: flex;
-  flex-direction: column;
   color: white;
   min-height: 100vh;
-  align-items: center;
   background: #282626;
-  box-shadow: 0 0 10px gray;
-
-  //#e3e2e2
+  box-shadow: 0 0 10px orangered;
 }
 </style>

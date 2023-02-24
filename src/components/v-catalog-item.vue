@@ -1,6 +1,8 @@
 <template>
-  <div class="v-catalog-item">
-    <div class="v-catalog-item__header">
+  <div class="v-catalog-item black-container">
+    <div
+      class="v-catalog-item__header flex-container flex-container-column flex-container-align-c"
+    >
       <img
         class="v-catalog-item__image"
         :src="require('../assets/images/' + product_data.image)"
@@ -8,14 +10,16 @@
       />
       <h3 class="v-catalog-item__name">{{ product_data.name }}</h3>
     </div>
-    <div class="v-catalog-item__about-wrapper">
+    <div
+      class="v-catalog-item__about-wrapper flex-container-column flex-container"
+    >
       <h5>Информация о товаре:</h5>
       <p>{{ product_data.about }}</p>
     </div>
-    <div class="v-catalog-item__footer">
+    <div class="v-catalog-item__footer flex-container-column flex-container">
       <p class="v-catalog-item__price">Цена: {{ product_data.price }} ₽</p>
       <button
-        class="v-catalog-item__add-to-cart_btn"
+        class="v-catalog-item__add-to-cart_btn button-active"
         @click="pushProductInTheCart(product_data)"
       >
         Добавить в корзину
@@ -37,6 +41,11 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      show: false,
+    };
+  },
   methods: mapMutations(["pushProductInTheCart"]),
 };
 </script>
@@ -46,16 +55,9 @@ export default {
   flex-basis: 25%;
   min-width: 30rem;
   padding: 20px;
-  margin: 20px;
-  box-shadow: 0 0 8px 0 orangered;
-  border-radius: 6px;
-  background: #131313;
+  margin: 20px 0;
 
   &__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     & img {
       margin-right: 2rem;
     }
@@ -63,8 +65,6 @@ export default {
 
   &__about-wrapper {
     text-align: start;
-    display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
 
     & p:last-child {
@@ -73,30 +73,12 @@ export default {
   }
 
   &__footer {
-    display: flex;
-    flex-direction: column;
     align-items: flex-end;
   }
 
   &__add-to-cart_btn {
-    color: white;
+    margin-top: 1rem;
     padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 6px;
-    background: orangered;
-    cursor: pointer;
-    transition: 0.2s;
-
-    //#1d1df5
-
-    &:focus {
-      background: orangered;
-    }
-
-    &:active {
-      transform: scale(0.95);
-      background: #fc5a1d;
-    }
   }
 }
 </style>

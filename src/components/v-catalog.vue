@@ -1,6 +1,6 @@
 <template>
-  <div class="v-catalog">
-    <header class="header">
+  <div class="v-catalog flex-container flex-container-column">
+    <VHeader>
       <h3 class="colored-text">Мой магазин</h3>
       <router-link :to="{ name: 'cart' }">
         <div class="v-catalog__link-to-cart">
@@ -8,11 +8,13 @@
           {{ allProductsInCartCount }}
         </div>
       </router-link>
-    </header>
+    </VHeader>
 
     <main class="v-catalog__content-wrapper">
       <h2>Каталог товаров</h2>
-      <div class="v-catalog-wrapper-items">
+      <div
+        class="v-catalog-wrapper-items flex-container-justify-between flex-container flex-container-align-c"
+      >
         <VCatalogItem
           v-for="product in allProducts"
           :key="product.article"
@@ -26,10 +28,11 @@
 <script>
 import VCatalogItem from "@/components/v-catalog-item.vue";
 import { mapActions, mapGetters } from "vuex";
+import VHeader from "@/components/v-header.vue";
 
 export default {
   name: "v-catalog",
-  components: { VCatalogItem },
+  components: { VHeader, VCatalogItem },
   mounted() {
     this.fetchProducts();
   },
@@ -44,9 +47,6 @@ export default {
 
 <style lang="scss">
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   min-height: 5rem;
   padding: 0 2rem;
   background: #171717;
@@ -62,9 +62,6 @@ export default {
 }
 
 .v-catalog {
-  display: flex;
-  flex-direction: column;
-
   &__content-wrapper {
     margin: 0 2rem;
   }
@@ -75,10 +72,7 @@ export default {
   }
 
   &-wrapper-items {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
   }
 }
 </style>

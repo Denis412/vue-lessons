@@ -1,26 +1,38 @@
 <template>
-  <div class="v-cart-item">
-    <div class="v-cart-item__left-wrapper">
+  <div
+    class="v-cart-item flex-container flex-container-align-c flex-container-justify-between black-container"
+  >
+    <div class="flex-container flex-container-align-c">
       <img
         :src="require('../assets/images/' + product_group[0].image)"
         alt="picture"
       />
       <h3>{{ product_group[0].name }}</h3>
     </div>
-    <div class="v-cart-item__right-wrapper">
-      <div class="v-cart-item__btns-wrapper">
-        <div class="v-cart-item__counters-btns">
+    <div class="flex-container flex-container-align-c">
+      <div
+        class="v-cart-item__btns-wrapper flex-container flex-container-column flex-container-align-c"
+      >
+        <div
+          class="v-cart-item__counters-btns flex-container flex-container-align-c"
+        >
           <button
+            class="button-active"
             :disabled="countSpecificProduct === 1"
             @click="deleteProductInCart(product_group[0])"
           >
             -
           </button>
           <p>{{ countSpecificProduct }}</p>
-          <button @click="pushProductInTheCart(product_group[0])">+</button>
+          <button
+            class="button-active"
+            @click="pushProductInTheCart(product_group[0])"
+          >
+            +
+          </button>
         </div>
         <p
-          class="v-cart-item-clickable-text"
+          class="clickable-text"
           @click="deleteAllProductsGroup(product_group)"
         >
           Удалить
@@ -62,43 +74,14 @@ export default {
 
 <style lang="scss">
 .v-cart-item {
-  display: flex;
   min-width: 100%;
-  justify-content: space-between;
-  align-items: center;
   padding: 2rem;
-  background: #131313;
-  border-radius: 2rem;
-
-  box-shadow: 0 0 8px orangered;
-
-  &-clickable-text {
-    color: #57579a;
-    margin-top: 0.5rem;
-    cursor: pointer;
-  }
-
-  &__left-wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  &__right-wrapper {
-    display: flex;
-    align-items: center;
-  }
 
   &__btns-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-right: 2rem;
   }
 
   &__counters-btns {
-    display: flex;
-    align-items: center;
-
     & p {
       margin: 0 1rem;
     }
@@ -106,12 +89,6 @@ export default {
     & button {
       width: 2rem;
       height: 2rem;
-
-      border: none;
-      border-radius: 4px;
-      background: orangered;
-
-      cursor: pointer;
     }
   }
 
@@ -122,24 +99,6 @@ export default {
 
   &:not(&:last-child) {
     margin-bottom: 2rem;
-  }
-
-  &__header {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__btn {
-    color: white;
-    padding: 0.25rem 1rem;
-    border: 1px solid white;
-    border-radius: 6px;
-    background: #1d1df5;
-    cursor: pointer;
-
-    &-delete {
-      background: red;
-    }
   }
 }
 </style>

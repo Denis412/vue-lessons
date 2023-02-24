@@ -36,4 +36,50 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: black;
 }
+
+.flex-container {
+  display: flex;
+
+  &-column {
+    flex-direction: column;
+  }
+
+  &-justify-between {
+    justify-content: space-between;
+  }
+
+  &-align-c {
+    align-items: center;
+  }
+}
+
+.black-container {
+  box-shadow: 0 0 8px 0 orangered;
+  border-radius: 1rem;
+  background: #131313;
+}
+
+.clickable-text {
+  color: #57579a;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.button-active {
+  color: white;
+  border: none;
+  border-radius: 6px;
+  background: orangered;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:focus {
+    background: orangered;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    background: #fc5a1d;
+  }
+}
 </style>
