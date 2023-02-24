@@ -9,17 +9,22 @@ export default {
   },
   mutations: {
     addProductInCart(state, newProduct) {
-      state.productsInCart.push(
-        // Добавление поля id для карточек товаров, добавленных в корзину
-        Object.assign({}, newProduct, { id: state.productsInCart.length + 1 })
+      const index = state.productsInCart.findIndex(
+        (mass) => mass.findIndex((product) => product === newProduct) !== -1
       );
+      index !== -1
+        ? state.productsInCart[index].push(newProduct)
+        : state.productsInCart.push([newProduct]);
     },
     deleteProductInCart(state, deleteProduct) {
       const index = state.productsInCart.findIndex(
-        (product) => deleteProduct.id === product.id
+        (mass) => mass.findIndex((product) => product === deleteProduct) !== -1
       );
-      // console.log(deleteProduct === state.allProducts[index]);
-      if (index !== -1) state.productsInCart.splice(index, 1);
+      if (index !== -1) {
+        state.productsInCart[index].length > 1
+          ? state.productsInCart[index].splice(0, 1)
+          : state.productsInCart.splice(index, 1);
+      }
     },
     updateProducts(state, products) {
       state.allProducts = products;
@@ -28,6 +33,7 @@ export default {
   state: {
     allProducts: [],
     productsInCart: [],
+    checkedProducts: [],
   },
   getters: {
     productsInCartCount(state) {
@@ -38,6 +44,14 @@ export default {
     },
     addedInCartProducts(state) {
       return state.productsInCart;
+    },
+    allProductsInCartCountPrice(state) {
+      return state.productsInCart.reduce((sum, group) => {
+        return sum + group.reduce((acc, product) => acc + product.price, 0);
+      }, 0);
+    },
+    allProductsInCartCount(state) {
+      return state.productsInCart.reduce((sum, group) => sum + group.length, 0);
     },
   },
 };

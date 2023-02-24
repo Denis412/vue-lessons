@@ -1,60 +1,110 @@
 <template>
   <div class="v-cart-item">
-    <div class="v-cart-item__header">
+    <div class="v-cart-item__left-wrapper">
       <img
-        class="v-catalog-item__image"
-        :src="require('../assets/images/' + product_data.image)"
+        :src="require('../assets/images/' + product_group[0].image)"
         alt="picture"
       />
-      <h3>{{ product_data.name }}</h3>
+      <h3>{{ product_group[0].name }}</h3>
     </div>
-    <div class="v-cart-item__main">
-      <h4>Product information</h4>
-      <p>{{ product_data.about }}</p>
-    </div>
-    <div class="v-cart-item__footer">
-      <p>Price {{ product_data.price }}</p>
-      <button class="v-cart-item__btn">Pay</button>
-      <button
-        class="v-cart-item__btn v-cart-item__btn-delete"
-        @click="deleteProductInCart(product_data)"
-      >
-        Delete
-      </button>
+    <div class="v-cart-item__right-wrapper">
+      <div class="v-cart-item__btns-wrapper">
+        <div class="v-cart-item__counters-btns">
+          <button @click="deleteProductInCart(product_group[0])">-</button>
+          <p>{{ countSpecificProduct }}</p>
+          <button @click="addProductInCart(product_group[0])">+</button>
+        </div>
+      </div>
+      <p class="v-cart-item__main-text">{{ productPrice }} ₽</p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "v-cart-item",
   props: {
-    product_data: {
+    product_group: {
       type: Object,
       default() {
         return {};
       },
     },
   },
-  methods: mapMutations(["deleteProductInCart"]),
+  computed: {
+    ...mapGetters(["addedInCartProducts"]),
+    productPrice() {
+      return this.product_group[0].price;
+    },
+    countSpecificProduct() {
+      return this.product_group.length;
+    },
+  },
+  methods: mapMutations(["deleteProductInCart", "addProductInCart"]),
 };
 </script>
 
 <style lang="scss">
 .v-cart-item {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  min-width: 100%;
   justify-content: space-between;
   align-items: center;
-  flex-basis: 25%;
-  box-shadow: 0 0 8px 0 grey;
-  padding: 20px;
-  margin: 20px;
+  padding: 2rem;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 2rem;
+
+  &__left-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__right-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__btns-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__counters-btns {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+
+    & p {
+      margin: 0 1rem;
+    }
+
+    & button {
+      width: 2rem;
+      height: 2rem;
+
+      border: 1px solid #dfdee2;
+      border-radius: 4px;
+      background: #ffffff;
+
+      cursor: pointer;
+    }
+  }
+
+  &__main-text {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+  &:not(&:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+  }
 
   &__btn {
     color: white;

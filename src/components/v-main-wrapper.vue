@@ -1,12 +1,16 @@
 <template>
   <div class="v-main-wrapper">
-    <keep-alive>
-      <router-view> </router-view>
-    </keep-alive>
+    <main class="v-main-wrapper__content">
+      <keep-alive>
+        <router-view> </router-view>
+      </keep-alive>
+    </main>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "v-main-wrapper",
   data() {
@@ -14,16 +18,18 @@ export default {
       title: "My store",
     };
   },
+  computed: mapGetters(["productsInCartCount"]),
 };
 </script>
 
 <style lang="scss">
-.v-main-wrapper {
+.v-main-wrapper__content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
+  min-height: 100vh;
   align-items: center;
-  max-width: 1000px;
-  margin: 0 auto;
+  background: #e3e2e2;
+  box-shadow: 0 0 10px gray;
 }
 </style>

@@ -1,20 +1,24 @@
 <template>
   <div class="v-catalog">
-    <router-link :to="{ name: 'cart', params: { addedInCartProducts } }">
-      <div class="v-catalog__link-to-cart">
-        <i class="medium material-icons">shopping_cart</i>
-        {{ productsInCartCount }}
+    <header class="header">
+      <h3>Мой магазин</h3>
+      <router-link :to="{ name: 'cart', params: { addedInCartProducts } }">
+        <div class="v-catalog__link-to-cart">
+          <i class="medium material-icons">shopping_cart</i>
+          {{ allProductsInCartCount }}
+        </div>
+      </router-link>
+    </header>
+    <main class="v-catalog__content-wrapper">
+      <h2>Каталог товаров</h2>
+      <div class="v-catalog-wrapper-items">
+        <VCatalogItem
+          v-for="product in allProducts"
+          :key="product.article"
+          :product_data="product"
+        />
       </div>
-    </router-link>
-
-    <h2>Каталог товаров</h2>
-    <div class="v-catalog-wrapper-items">
-      <VCatalogItem
-        v-for="product in allProducts"
-        :key="product.article"
-        :product_data="product"
-      />
-    </div>
+    </main>
   </div>
 </template>
 
@@ -31,6 +35,7 @@ export default {
   computed: mapGetters([
     "allProducts",
     "productsInCartCount",
+    "allProductsInCartCount",
     "addedInCartProducts",
   ]),
   methods: mapActions(["fetchProducts"]),
@@ -38,14 +43,30 @@ export default {
 </script>
 
 <style lang="scss">
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 5rem;
+  padding: 0 2rem;
+  background: #ffffff;
+
+  & p {
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+}
+
 .v-catalog {
   display: flex;
   flex-direction: column;
 
+  &__content-wrapper {
+    margin: 0 2rem;
+  }
+
   &__link-to-cart {
-    position: absolute;
-    top: 10px;
-    right: 1rem;
+    color: black;
     padding: 1rem;
   }
 
