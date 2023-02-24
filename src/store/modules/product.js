@@ -8,23 +8,29 @@ export default {
     },
   },
   mutations: {
-    addProductInCart(state, newProduct) {
-      const index = state.productsInCart.findIndex(
+    pushProductInTheCart(state, newProduct) {
+      const index = state.productsInTheCart.findIndex(
         (mass) => mass.findIndex((product) => product === newProduct) !== -1
       );
       index !== -1
-        ? state.productsInCart[index].push(newProduct)
-        : state.productsInCart.push([newProduct]);
+        ? state.productsInTheCart[index].push(newProduct)
+        : state.productsInTheCart.push([newProduct]);
     },
     deleteProductInCart(state, deleteProduct) {
-      const index = state.productsInCart.findIndex(
+      const index = state.productsInTheCart.findIndex(
         (mass) => mass.findIndex((product) => product === deleteProduct) !== -1
       );
       if (index !== -1) {
-        state.productsInCart[index].length > 1
-          ? state.productsInCart[index].splice(0, 1)
-          : state.productsInCart.splice(index, 1);
+        state.productsInTheCart[index].length > 1
+          ? state.productsInTheCart[index].splice(0, 1)
+          : state.productsInTheCart.splice(index, 1);
       }
+    },
+    deleteAllProductsGroup(state, deleteGroup) {
+      const index = state.productsInTheCart.findIndex(
+        (group) => group === deleteGroup
+      );
+      if (index !== -1) state.productsInTheCart.splice(index, 1);
     },
     updateProducts(state, products) {
       state.allProducts = products;
@@ -32,26 +38,29 @@ export default {
   },
   state: {
     allProducts: [],
-    productsInCart: [],
+    productsInTheCart: [],
     checkedProducts: [],
   },
   getters: {
     productsInCartCount(state) {
-      return state.productsInCart.length;
+      return state.productsInTheCart.length;
     },
     allProducts(state) {
       return state.allProducts;
     },
-    addedInCartProducts(state) {
-      return state.productsInCart;
+    allProductsInTheCart(state) {
+      return state.productsInTheCart;
     },
     allProductsInCartCountPrice(state) {
-      return state.productsInCart.reduce((sum, group) => {
+      return state.productsInTheCart.reduce((sum, group) => {
         return sum + group.reduce((acc, product) => acc + product.price, 0);
       }, 0);
     },
     allProductsInCartCount(state) {
-      return state.productsInCart.reduce((sum, group) => sum + group.length, 0);
+      return state.productsInTheCart.reduce(
+        (sum, group) => sum + group.length,
+        0
+      );
     },
   },
 };

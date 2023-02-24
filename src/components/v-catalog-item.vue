@@ -9,16 +9,16 @@
       <h3 class="v-catalog-item__name">{{ product_data.name }}</h3>
     </div>
     <div class="v-catalog-item__about-wrapper">
-      <h4>Product information</h4>
+      <h5>Информация о товаре:</h5>
       <p>{{ product_data.about }}</p>
     </div>
     <div class="v-catalog-item__footer">
-      <p class="v-catalog-item__price">Price: {{ product_data.price }}</p>
+      <p class="v-catalog-item__price">Цена: {{ product_data.price }} ₽</p>
       <button
         class="v-catalog-item__add-to-cart_btn"
-        @click="addProductInCart(product_data)"
+        @click="pushProductInTheCart(product_data)"
       >
-        Add to cart
+        Добавить в корзину
       </button>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
       },
     },
   },
-  methods: mapMutations(["addProductInCart"]),
+  methods: mapMutations(["pushProductInTheCart"]),
 };
 </script>
 
@@ -52,6 +52,8 @@ export default {
   background: #ffffff;
 
   &__header {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 
     & img {
@@ -78,11 +80,20 @@ export default {
 
   &__add-to-cart_btn {
     color: white;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
     border: 1px solid white;
     border-radius: 6px;
     background: #1d1df5;
     cursor: pointer;
+    transition: 0.2s;
+
+    &:focus {
+      background: #1d1df5;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }
 </style>

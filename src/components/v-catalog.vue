@@ -2,7 +2,7 @@
   <div class="v-catalog">
     <header class="header">
       <h3>Мой магазин</h3>
-      <router-link :to="{ name: 'cart', params: { addedInCartProducts } }">
+      <router-link :to="{ name: 'cart' }">
         <div class="v-catalog__link-to-cart">
           <i class="medium material-icons">shopping_cart</i>
           {{ allProductsInCartCount }}
@@ -36,7 +36,6 @@ export default {
     "allProducts",
     "productsInCartCount",
     "allProductsInCartCount",
-    "addedInCartProducts",
   ]),
   methods: mapActions(["fetchProducts"]),
 };

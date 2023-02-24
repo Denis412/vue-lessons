@@ -12,8 +12,14 @@
         <div class="v-cart-item__counters-btns">
           <button @click="deleteProductInCart(product_group[0])">-</button>
           <p>{{ countSpecificProduct }}</p>
-          <button @click="addProductInCart(product_group[0])">+</button>
+          <button @click="pushProductInTheCart(product_group[0])">+</button>
         </div>
+        <p
+          class="v-cart-item-clickable-text"
+          @click="deleteAllProductsGroup(product_group)"
+        >
+          Удалить
+        </p>
       </div>
       <p class="v-cart-item__main-text">{{ productPrice }} ₽</p>
     </div>
@@ -21,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: "v-cart-item",
@@ -34,7 +40,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["addedInCartProducts"]),
     productPrice() {
       return this.product_group[0].price;
     },
@@ -42,7 +47,11 @@ export default {
       return this.product_group.length;
     },
   },
-  methods: mapMutations(["deleteProductInCart", "addProductInCart"]),
+  methods: mapMutations([
+    "deleteProductInCart",
+    "pushProductInTheCart",
+    "deleteAllProductsGroup",
+  ]),
 };
 </script>
 
@@ -55,6 +64,14 @@ export default {
   padding: 2rem;
   background: #ffffff;
   border-radius: 2rem;
+
+  box-shadow: 0 0 8px lightblue;
+
+  &-clickable-text {
+    color: #57579a;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
 
   &__left-wrapper {
     display: flex;
@@ -69,12 +86,13 @@ export default {
   &__btns-wrapper {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-right: 2rem;
   }
 
   &__counters-btns {
     display: flex;
     align-items: center;
-    margin-right: 2rem;
 
     & p {
       margin: 0 1rem;
