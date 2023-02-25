@@ -17,7 +17,7 @@ const routes = [
         component: VCatalog,
       },
       {
-        path: ":id",
+        path: ":article",
         name: "productPage",
         component: VProductPage,
       },

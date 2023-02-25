@@ -4,12 +4,16 @@
 
 <script>
 import VMainWrapper from "@/components/v-main-wrapper.vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "app",
   components: {
     VMainWrapper,
   },
+  // mounted() {
+  //   this.fetchProducts();
+  // },
+  methods: mapActions(["fetchProducts"]),
   computed: mapGetters(["productsInCartCount"]),
 };
 </script>
@@ -84,6 +88,16 @@ body {
   &:active {
     transform: scale(0.95);
     background: #fc5a1d;
+  }
+}
+
+.link-default {
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+
+  &-orangered {
+    color: orangered;
   }
 }
 </style>

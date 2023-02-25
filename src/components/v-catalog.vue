@@ -21,14 +21,14 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "v-catalog",
-  components: { VCatalogItem },
   mounted() {
     this.fetchProducts();
   },
+  components: { VCatalogItem },
   computed: mapGetters([
-    "allProducts",
     "productsInCartCount",
     "allProductsInCartCount",
+    "allProducts",
   ]),
   methods: mapActions(["fetchProducts"]),
 };
@@ -42,11 +42,6 @@ export default {
 .v-catalog {
   &-main-wrapper {
     margin: 0 2rem;
-  }
-
-  &-link {
-    color: white;
-    padding: 1rem;
   }
 
   &-wrapper-items {

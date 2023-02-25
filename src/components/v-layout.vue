@@ -1,9 +1,11 @@
 <template>
   <section class="v-layout">
     <VHeader>
-      <h3 class="colored-text">Мой магазин</h3>
+      <router-link :to="{ path: '/' }">
+        <h3 class="colored-text link-default-orangered">Мой магазин</h3>
+      </router-link>
       <router-link :to="{ name: 'cart' }">
-        <div class="v-catalog-link">
+        <div class="link-default">
           <i class="medium material-icons">shopping_cart</i>
           {{ allProductsInCartCount }}
         </div>

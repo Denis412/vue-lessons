@@ -5,10 +5,15 @@
     >
       <img
         class="v-catalog-item__image"
-        :src="require('../assets/images/' + product_data.image)"
+        :src="require('@/assets/images/' + product_data.image)"
         alt="picture"
       />
-      <h3 class="v-catalog-item__name">{{ product_data.name }}</h3>
+      <router-link
+        :to="{ name: 'productPage', params: { article: product_data.article } }"
+        class="white-color-text"
+      >
+        <h3 class="v-catalog-item__name">{{ product_data.name }}</h3>
+      </router-link>
     </div>
     <div
       class="v-catalog-item__about-wrapper flex-container-column flex-container"

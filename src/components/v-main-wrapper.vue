@@ -14,11 +14,6 @@ import { mapGetters } from "vuex";
 export default {
   name: "v-main-wrapper",
   components: {},
-  data() {
-    return {
-      title: "My store",
-    };
-  },
   computed: mapGetters(["productsInCartCount"]),
 };
 </script>
