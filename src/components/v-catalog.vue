@@ -3,7 +3,7 @@
     <section class="v-catalog-main-wrapper">
       <h2>Каталог товаров</h2>
       <div
-        class="v-catalog-wrapper-items flex-container-justify-between flex-container flex-container-align-c"
+        class="v-catalog-wrapper-items flex-container-justify-center flex-container-justify-between flex-container flex-container-align-c"
       >
         <VCatalogItem
           v-for="product in allProducts"

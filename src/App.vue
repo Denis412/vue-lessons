@@ -96,4 +96,10 @@ body {
     color: orangered;
   }
 }
+
+@media (max-width: 900px) {
+  .flex-container-justify-center {
+    justify-content: center;
+  }
+}
 </style>
