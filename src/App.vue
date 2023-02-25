@@ -4,16 +4,12 @@
 
 <script>
 import VMainWrapper from "@/components/v-main-wrapper.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "app",
   components: {
     VMainWrapper,
   },
-  // mounted() {
-  //   this.fetchProducts();
-  // },
-  methods: mapActions(["fetchProducts"]),
   computed: mapGetters(["productsInCartCount"]),
 };
 </script>
