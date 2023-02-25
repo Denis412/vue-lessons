@@ -1,7 +1,7 @@
 <template>
-  <div class="v-cart flex-container flex-container-column">
+  <main class="v-cart flex-container flex-container-column">
     <VHeader>
-      <router-link :to="{ name: 'catalog' }">
+      <router-link :to="{ path: '/' }">
         <div class="white-color-text flex-container flex-container-align-c">
           <i class="small material-icons">arrow_back</i>
           <p>Вернуться к покупкам</p>
@@ -9,15 +9,15 @@
       </router-link>
     </VHeader>
 
-    <main class="v-cart__content-wrapper">
+    <section class="v-cart__content-wrapper">
       <h2>Корзина</h2>
       <div v-if="productsInCartCount" class="flex-container">
         <VCartShoppingList />
         <VCartPriceBoard />
       </div>
       <div v-else>Корзина пуста</div>
-    </main>
-  </div>
+    </section>
+  </main>
 </template>
 
 <script>

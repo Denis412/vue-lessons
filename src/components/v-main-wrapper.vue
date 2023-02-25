@@ -1,19 +1,10 @@
 <template>
-  <div class="v-main-wrapper">
-    <main
-      class="v-main-wrapper__content flex-container flex-container-align-c flex-container-column"
-    >
-      <Suspense>
-        <template #default>
-          <keep-alive>
-            <router-view> </router-view>
-          </keep-alive>
-        </template>
-        <template #fallback>
-          <h1>Loading...</h1>
-        </template>
-      </Suspense>
-    </main>
+  <div
+    class="v-main-wrapper flex-container flex-container-align-c flex-container-column"
+  >
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -22,6 +13,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "v-main-wrapper",
+  components: {},
   data() {
     return {
       title: "My store",
@@ -32,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-.v-main-wrapper__content {
+.v-main-wrapper {
   color: white;
   min-height: 100vh;
   background: #282626;
