@@ -9,29 +9,41 @@ export default {
   },
   mutations: {
     pushProductInTheCart(state, newProduct) {
-      const index = state.productsInTheCart.findIndex(
-        (mass) => mass.findIndex((product) => product === newProduct) !== -1
-      );
-      index !== -1
-        ? state.productsInTheCart[index].push(newProduct)
+      const group = state.productsInTheCart.find((mass) =>
+        mass.find((product) => product === newProduct)
+      ); // Поиск группы товаров newProduct
+
+      // Если соответствующая группа найдена,
+      // то добавляем в ее конец newProduct,
+      // иначе - создаем группу и добавляем туда newProduct
+      group
+        ? group.push(newProduct)
         : state.productsInTheCart.push([newProduct]);
     },
+
     deleteProductInCart(state, deleteProduct) {
-      const index = state.productsInTheCart.findIndex(
-        (mass) => mass.findIndex((product) => product === deleteProduct) !== -1
-      );
-      if (index !== -1) {
-        state.productsInTheCart[index].length > 1
-          ? state.productsInTheCart[index].splice(0, 1)
-          : state.productsInTheCart.splice(index, 1);
+      const group = state.productsInTheCart.find((gr) =>
+        gr.find((product) => product === deleteProduct)
+      ); // Поиск группы товаров deleteProduct
+
+      // Если соответствующая группа найдена и ее размер больше одного товара,
+      // то удаляем с ее конца deleteProduct,
+      // иначе если размер группы один товар - удаляем всю группу
+      if (group) {
+        group.length > 1
+          ? group.pop()
+          : (state.productsInTheCart = state.productsInTheCart.filter(
+              (gr) => gr !== group
+            ));
       }
     },
+
     deleteAllProductsGroup(state, deleteGroup) {
-      const index = state.productsInTheCart.findIndex(
-        (group) => group === deleteGroup
-      );
-      if (index !== -1) state.productsInTheCart.splice(index, 1);
+      state.productsInTheCart = state.productsInTheCart.filter(
+        (group) => group !== deleteGroup
+      ); // Удаление всей группы товаров deleteGroup целиком
     },
+
     updateProducts(state, products) {
       state.allProducts = products;
     },
@@ -39,28 +51,33 @@ export default {
   state: {
     allProducts: [],
     productsInTheCart: [],
-    checkedProducts: [],
   },
   getters: {
     productsInCartCount(state) {
       return state.productsInTheCart.length;
     },
+
     allProducts(state) {
       return state.allProducts;
     },
+
     allProductsInTheCart(state) {
       return state.productsInTheCart;
     },
-    allProductsInCartCountPrice(state) {
-      return state.productsInTheCart.reduce((sum, group) => {
-        return sum + group.reduce((acc, product) => acc + product.price, 0);
-      }, 0);
-    },
-    allProductsInCartCount(state) {
-      return state.productsInTheCart.reduce(
+
+    allProductsInCartCount(state, getters) {
+      return getters.allProductsInTheCart.reduce(
         (sum, group) => sum + group.length,
         0
-      );
+      ); // Подсчет количества всех товаров в корзине
+    },
+
+    allProductsInCartCountPrice(state, getters) {
+      return getters.allProductsInTheCart.reduce(
+        (sum, group) =>
+          sum + group.reduce((acc, product) => acc + product.price, 0),
+        0
+      ); // Подсчет стоимости всех товаров в корзине
     },
   },
 };
