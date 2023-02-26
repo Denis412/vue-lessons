@@ -31,7 +31,6 @@ body {
 }
 
 #app {
-  width: 1800px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: black;

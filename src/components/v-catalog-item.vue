@@ -60,7 +60,7 @@ export default {
   flex-basis: 25%;
   min-width: 30rem;
   padding: 20px;
-  margin: 20px 0;
+  margin: 20px 1rem;
 
   &__header {
     & img {

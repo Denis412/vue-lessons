@@ -14,8 +14,6 @@ export default {
 
 <style lang="scss">
 .header {
-  width: 100vw;
-  max-width: 1800px;
   min-height: 5rem;
   padding: 0 2rem;
   background: #171717;
