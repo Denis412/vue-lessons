@@ -11,7 +11,10 @@
 
     <section class="v-cart__content-wrapper">
       <h2>Корзина</h2>
-      <div v-if="productsInCartCount" class="flex-container">
+      <div
+        v-if="productsInCartCount"
+        class="flex-container flex-container-justify-between"
+      >
         <VCartShoppingList />
         <VCartPriceBoard />
       </div>
@@ -36,6 +39,7 @@ export default {
 <style lang="scss">
 .v-cart {
   width: 100%;
+  max-width: 3000px;
 
   &__content-wrapper {
     padding: 0 2rem;

@@ -22,6 +22,7 @@ export default {
 .v-main-wrapper {
   color: white;
   max-width: 3000px;
+  min-width: 100vw;
   min-height: 100vh;
   background: #282626;
   box-shadow: 0 0 10px orangered;

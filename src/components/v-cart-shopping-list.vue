@@ -22,7 +22,8 @@ export default {
 
 <style>
 .v-cart-shopping-list-wrapper {
-  flex-grow: 2;
+  max-width: 80rem;
+  flex-grow: 3;
   margin-right: 3rem;
 }
 </style>

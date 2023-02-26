@@ -32,6 +32,7 @@ export default {
 
 <style lang="scss">
 .v-cart-price-board-wrapper {
+  max-width: 40rem;
   height: max-content;
   flex-grow: 2;
   padding: 2rem;
