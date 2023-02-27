@@ -12,6 +12,27 @@
         />
       </div>
     </section>
+
+    <Teleport to="body">
+      <VModalWindow>
+        <template v-slot:header>
+          <h3>{{ error.name }}</h3>
+        </template>
+
+        <template v-slot:main>
+          <p>{{ error.message }}</p>
+        </template>
+
+        <template v-slot:footer>
+          <button
+            @click="repeatedRequest"
+            class="button-active red-button-error"
+          >
+            Попробовать снова
+          </button>
+        </template>
+      </VModalWindow>
+    </Teleport>
   </main>
 </template>
 
@@ -19,17 +40,24 @@
 import VCatalogItem from "@/components/v-catalog-item.vue";
 import { useStore } from "vuex";
 import { computed, onMounted } from "vue";
+import VModalWindow from "@/components/v-modal-window.vue";
 
 export default {
   name: "v-catalog",
-  components: { VCatalogItem },
+  components: { VModalWindow, VCatalogItem },
   setup() {
     const store = useStore();
+
+    const repeatedRequest = () => {
+      store.dispatch("fetchProducts");
+    };
 
     onMounted(() => store.dispatch("fetchProducts"));
 
     return {
+      repeatedRequest,
       allProducts: computed(() => store.getters.allProducts),
+      error: computed(() => store.getters.error),
     };
   },
 };

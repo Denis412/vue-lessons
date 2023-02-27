@@ -3,8 +3,13 @@ export default {
     fetchProducts({ commit }) {
       fetch("http://localhost:3000/products")
         .then((response) => response.json())
-        .then((products) => commit("updateProducts", products))
-        .catch((error) => console.log(error));
+        .then((products) => {
+          commit("updateError", {});
+          commit("updateProducts", products);
+        })
+        .catch(() => {
+          commit("updateError", new Error("Ошибка запроса на сервер!"));
+        });
     },
   },
   mutations: {
@@ -47,14 +52,23 @@ export default {
     updateProducts(state, products) {
       state.allProducts = products;
     },
+
+    updateError(state, error) {
+      state.error = error;
+    },
   },
   state: {
     allProducts: [],
     productsInTheCart: [],
+    error: {},
   },
   getters: {
     productsInCartCount(state) {
       return state.productsInTheCart.length;
+    },
+
+    error(state) {
+      return state.error;
     },
 
     allProducts(state) {

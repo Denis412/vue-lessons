@@ -2,9 +2,11 @@
   <div
     class="v-main-wrapper flex-container flex-container-align-c flex-container-column"
   >
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 

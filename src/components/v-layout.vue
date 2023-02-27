@@ -12,20 +12,24 @@
       </router-link>
     </VHeader>
 
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
   </section>
 </template>
 
 <script>
 import VHeader from "@/components/v-header.vue";
+import VCatalog from "@/components/v-catalog.vue";
+import VCart from "@/components/v-cart.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
 
 export default {
   name: "v-layout",
-  components: { VHeader },
+  components: { VHeader, VCatalog, VCart },
   setup() {
     const store = useStore();
 

@@ -15,6 +15,7 @@ export default {
 
     return {
       productsInCartCount: computed(() => store.getters.productsInCartCount),
+      error: computed(() => store.getters.error),
     };
   },
 };
@@ -81,9 +82,24 @@ body {
   background: orangered;
   cursor: pointer;
   transition: 0.2s;
+  padding: 0.25rem;
 
   &:focus {
     background: orangered;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    background: #fc5a1d;
+  }
+}
+
+.red-button-error {
+  background: red;
+  padding: 1rem;
+
+  &:focus {
+    background: red;
   }
 
   &:active {
@@ -102,7 +118,7 @@ body {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .flex-container-justify-center {
     justify-content: center;
   }
