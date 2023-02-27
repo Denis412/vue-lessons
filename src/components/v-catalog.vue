@@ -17,20 +17,21 @@
 
 <script>
 import VCatalogItem from "@/components/v-catalog-item.vue";
-import { mapActions, mapGetters } from "vuex";
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
 
 export default {
   name: "v-catalog",
-  mounted() {
-    this.fetchProducts();
-  },
   components: { VCatalogItem },
-  computed: mapGetters([
-    "productsInCartCount",
-    "allProductsInCartCount",
-    "allProducts",
-  ]),
-  methods: mapActions(["fetchProducts"]),
+  setup() {
+    const store = useStore();
+
+    onMounted(() => store.dispatch("fetchProducts"));
+
+    return {
+      allProducts: computed(() => store.getters.allProducts),
+    };
+  },
 };
 </script>
 

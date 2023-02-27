@@ -9,12 +9,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "v-main-wrapper",
-  components: {},
-  computed: mapGetters(["productsInCartCount"]),
 };
 </script>
 

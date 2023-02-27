@@ -20,11 +20,21 @@
 
 <script>
 import VHeader from "@/components/v-header.vue";
-import { mapGetters } from "vuex";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
+  name: "v-layout",
   components: { VHeader },
-  computed: mapGetters(["allProductsInCartCount"]),
+  setup() {
+    const store = useStore();
+
+    return {
+      allProductsInCartCount: computed(
+        () => store.getters.allProductsInCartCount
+      ),
+    };
+  },
 };
 </script>
 

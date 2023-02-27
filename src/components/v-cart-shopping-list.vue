@@ -12,11 +12,20 @@
 
 <script>
 import VCartItem from "@/components/v-cart-item.vue";
-import { mapGetters } from "vuex";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
+  name: "v-cart-shopping-list",
   components: { VCartItem },
-  computed: mapGetters(["productsInCartCount", "allProductsInTheCart"]),
+  setup() {
+    const store = useStore();
+
+    return {
+      productsInCartCount: computed(() => store.getters.allProductsInCartCount),
+      allProductsInTheCart: computed(() => store.getters.allProductsInTheCart),
+    };
+  },
 };
 </script>
 

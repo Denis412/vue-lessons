@@ -4,13 +4,19 @@
 
 <script>
 import VMainWrapper from "@/components/v-main-wrapper.vue";
-import { mapGetters } from "vuex";
+import { useStore } from "vuex";
+import { computed } from "vue";
+
 export default {
   name: "app",
-  components: {
-    VMainWrapper,
+  components: { VMainWrapper },
+  setup() {
+    const store = useStore();
+
+    return {
+      productsInCartCount: computed(() => store.getters.productsInCartCount),
+    };
   },
-  computed: mapGetters(["productsInCartCount"]),
 };
 </script>
 

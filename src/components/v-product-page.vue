@@ -8,25 +8,31 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { useStore } from "vuex";
+import { computed, onMounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
-  data() {
+  name: "v-product-page",
+  setup() {
+    const store = useStore();
+    const route = useRoute();
+
+    const product = reactive({});
+
+    const allProducts = computed(() => store.getters.allProducts);
+
+    onMounted(() => {
+      product.value = allProducts.value.find(
+        (p) => p.article === route.params.article
+      );
+    });
+
     return {
-      product: {
-        type: Object,
-        default() {
-          return {};
-        },
-      },
+      product,
+      allProducts,
     };
   },
-  mounted() {
-    this.product = this.allProducts.find(
-      (p) => p.article === this.$route.params.article
-    );
-  },
-  computed: mapGetters(["allProducts"]),
 };
 </script>
 

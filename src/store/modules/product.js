@@ -10,7 +10,7 @@ export default {
   mutations: {
     pushProductInTheCart(state, newProduct) {
       const group = state.productsInTheCart.find((mass) =>
-        mass.find((product) => product === newProduct)
+        mass.find((product) => product.article === newProduct.article)
       ); // Поиск группы товаров newProduct
 
       // Если соответствующая группа найдена,
@@ -23,7 +23,7 @@ export default {
 
     deleteProductInCart(state, deleteProduct) {
       const group = state.productsInTheCart.find((gr) =>
-        gr.find((product) => product === deleteProduct)
+        gr.find((product) => product.article === deleteProduct.article)
       ); // Поиск группы товаров deleteProduct
 
       // Если соответствующая группа найдена и ее размер больше одного товара,

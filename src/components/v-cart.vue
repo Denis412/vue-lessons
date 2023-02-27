@@ -24,15 +24,25 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { useStore } from "vuex";
 import VCartPriceBoard from "@/components/v-cart-price-board.vue";
 import VCartShoppingList from "@/components/v-cart-shopping-list.vue";
 import VHeader from "@/components/v-header.vue";
+import { computed } from "vue";
 
 export default {
   name: "v-cart",
   components: { VHeader, VCartShoppingList, VCartPriceBoard },
-  computed: mapGetters(["productsInCartCount", "allProductsInCartCount"]),
+  setup() {
+    const store = useStore();
+
+    return {
+      productsInCartCount: computed(() => store.getters.productsInCartCount),
+      allProductsInCartCount: computed(
+        () => store.getters.allProductsInCartCount
+      ),
+    };
+  },
 };
 </script>
 

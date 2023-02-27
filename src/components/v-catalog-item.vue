@@ -25,7 +25,7 @@
       <p class="v-catalog-item__price">Цена: {{ product_data.price }} ₽</p>
       <button
         class="v-catalog-item__add-to-cart_btn button-active"
-        @click="pushProductInTheCart(product_data)"
+        @click="handlePushInTheCart"
       >
         Добавить в корзину
       </button>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { useStore } from "vuex";
 
 export default {
   name: "v-catalog-item",
@@ -46,12 +46,16 @@ export default {
       },
     },
   },
-  data() {
+  setup(props) {
+    const store = useStore();
+
+    const handlePushInTheCart = () =>
+      store.commit("pushProductInTheCart", props.product_data);
+
     return {
-      show: false,
+      handlePushInTheCart,
     };
   },
-  methods: mapMutations(["pushProductInTheCart"]),
 };
 </script>
 
