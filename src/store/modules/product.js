@@ -14,39 +14,24 @@ export default {
   },
   mutations: {
     pushProductInTheCart(state, newProduct) {
-      const group = state.productsInTheCart.find((mass) =>
-        mass.find((product) => product.article === newProduct.article)
-      ); // Поиск группы товаров newProduct
-
-      // Если соответствующая группа найдена,
-      // то добавляем в ее конец newProduct,
-      // иначе - создаем группу и добавляем туда newProduct
-      group
-        ? group.push(newProduct)
-        : state.productsInTheCart.push([newProduct]);
+      newProduct.quantity++;
+      if (newProduct.quantity <= 1) state.productsInTheCart.push(newProduct);
     },
 
     deleteProductInCart(state, deleteProduct) {
-      const group = state.productsInTheCart.find((gr) =>
-        gr.find((product) => product.article === deleteProduct.article)
-      ); // Поиск группы товаров deleteProduct
-
-      // Если соответствующая группа найдена и ее размер больше одного товара,
-      // то удаляем с ее конца deleteProduct,
-      // иначе если размер группы один товар - удаляем всю группу
-      if (group) {
-        group.length > 1
-          ? group.pop()
-          : (state.productsInTheCart = state.productsInTheCart.filter(
-              (gr) => gr !== group
-            ));
+      deleteProduct.quantity--;
+      if (deleteProduct.quantity < 1) {
+        state.productsInTheCart = state.productsInTheCart.filter(
+          (product) => product !== deleteProduct
+        );
       }
     },
 
     deleteAllProductsGroup(state, deleteGroup) {
+      deleteGroup.quantity = 0;
       state.productsInTheCart = state.productsInTheCart.filter(
-        (group) => group !== deleteGroup
-      ); // Удаление всей группы товаров deleteGroup целиком
+        (product) => product !== deleteGroup
+      );
     },
 
     updateProducts(state, products) {
@@ -79,19 +64,18 @@ export default {
       return state.productsInTheCart;
     },
 
-    allProductsInCartCount(state, getters) {
-      return getters.allProductsInTheCart.reduce(
-        (sum, group) => sum + group.length,
+    allProductsInCartCount(state) {
+      return state.productsInTheCart.reduce(
+        (sum, product) => sum + product.quantity,
         0
-      ); // Подсчет количества всех товаров в корзине
+      );
     },
 
-    allProductsInCartCountPrice(state, getters) {
-      return getters.allProductsInTheCart.reduce(
-        (sum, group) =>
-          sum + group.reduce((acc, product) => acc + product.price, 0),
+    allProductsInCartCountPrice(state) {
+      return state.productsInTheCart.reduce(
+        (sum, product) => sum + product.quantity * product.price,
         0
-      ); // Подсчет стоимости всех товаров в корзине
+      );
     },
   },
 };

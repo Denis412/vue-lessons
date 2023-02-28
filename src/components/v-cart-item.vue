@@ -4,10 +4,10 @@
   >
     <div class="flex-container flex-container-align-c">
       <img
-        :src="require('../assets/images/' + product_group[0].image)"
+        :src="require('../assets/images/' + product_group.image)"
         alt="picture"
       />
-      <h3>{{ product_group[0].name }}</h3>
+      <h3>{{ product_group.name }}</h3>
     </div>
     <div class="flex-container flex-container-align-c">
       <div
@@ -17,14 +17,14 @@
           <button
             class="button-active v-cart-item-btn"
             :disabled="countSpecificProduct === 1"
-            @click="deleteProductInCart(product_group[0])"
+            @click="deleteProductInCart(product_group)"
           >
             -
           </button>
           <p class="v-cart-item-paragraph">{{ countSpecificProduct }}</p>
           <button
             class="button-active v-cart-item-btn"
-            @click="pushProductInTheCart(product_group[0])"
+            @click="pushProductInTheCart(product_group)"
           >
             +
           </button>
@@ -56,10 +56,10 @@ export default {
   },
   computed: {
     productPrice() {
-      return this.product_group[0].price;
+      return this.product_group.price;
     },
     countSpecificProduct() {
-      return this.product_group.length;
+      return this.product_group.quantity;
     },
   },
   methods: mapMutations([

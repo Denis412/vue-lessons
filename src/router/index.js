@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import VLayout from "@/components/v-layout.vue";
 
-const VCart = import("@/components/v-cart.vue");
-const VCatalog = import("@/components/v-catalog.vue");
-const VProductPage = import("@/components/v-product-page.vue");
+const VCart = () => import("@/components/v-cart.vue");
+const VCatalog = () => import("@/components/v-catalog.vue");
+const VProductPage = () => import("@/components/v-product-page.vue");
 
 const routes = [
   {
